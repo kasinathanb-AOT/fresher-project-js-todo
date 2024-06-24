@@ -51,6 +51,12 @@ header h3 {
   gap: 20px;
 }
 
+.customSpan {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
 .checkbox-style:checked {
   background-image: url("../images/tick.svg");
   background-size: contain;
