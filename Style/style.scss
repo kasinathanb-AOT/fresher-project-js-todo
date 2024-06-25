@@ -169,3 +169,27 @@ header h3 {
     line-height: 19.5px;
     font-weight: 500;
 }
+
+
+.check{
+    appearance: none;
+    border: 1px solid #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.check:checked{
+    background-image: url(../images/tick.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.padding-for-date{
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 148px;
+}

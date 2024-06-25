@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let sortMenu = document.getElementById("sortMenu");
   sortMenu.textContent = "Oldest";
 
+  var DateFormat = { date: "numeric", month: "string", year: "numeric" };   
+ 
+  
   // Open the modal for adding new task
   document
     .getElementById("open-add-modal")
@@ -108,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let completedTasksHeading = document.createElement("h5");
     completedTasksHeading.textContent = "Completed Tasks";
 
+
     // Clear button for Completed Tasks
     let clearButton = document.createElement("button");
     clearButton.textContent = "Clear Completed Tasks";
@@ -168,15 +172,20 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       radioAndTitle.appendChild(radioInput);
+
       radioAndTitle.appendChild(title);
+     
       radioAndTitle.appendChild(badge);
 
       let buttonsContainer = document.createElement("div");
       buttonsContainer.classList.add("button-ctn");
 
       let editButton = document.createElement("button");
+
       editButton.classList.add("btn", "btn-link", "p-0");
+
       editButton.innerHTML = `<img src="./images/edit.svg" alt="Edit" width="18" height="18">`;
+      
       editButton.setAttribute("data-toggle", "modal");
       editButton.setAttribute("data-target", "#task-modal");
       editButton.addEventListener("click", function () {
@@ -224,10 +233,32 @@ document.addEventListener("DOMContentLoaded", function () {
       let dateParagraph = document.createElement("p");
       dateParagraph.classList.add("text-muted");
       let dateText = document.createElement("small");
-      dateText.innerHTML = `
-    <img src="./images/calender.svg" width="24px" height="24px"/>
-      ${new Date(task.dueDate).toLocaleDateString()}`;
+      dateText.classList.add("padding-for-date")
+      dateText.innerHTML = `<img src="./images/calendar.svg" width="24px" height="24px"/> by ${new Date(task.dueDate).toLocaleDateString('en-GB',
+          {
+            day:'2-digit',
+            month: 'long',
+            year:'numeric'
+          } )
 
+        }`;;
+
+      // Give red color to the text of the date if the date is over
+      if (new Date(task.dueDate) < new Date()) {
+        dateText.style.color = "#C03503";
+        dateText.style.background ="#C035030F"
+        dateText.style.borderRadius = "4px"
+        dateText.innerHTML = `<img src="./images/red-calendar.svg" width="24px" height="24px"/> by ${new Date(task.dueDate).toLocaleDateString('en-GB',
+          {
+            day:'2-digit',
+            month: 'long',
+            year:'numeric'
+          } )
+
+        }`;
+      }
+
+  
       dateParagraph.appendChild(dateText);
       taskItemSub.appendChild(description);
       taskItemSub.appendChild(dateParagraph);
